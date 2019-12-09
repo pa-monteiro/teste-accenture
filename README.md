@@ -24,6 +24,7 @@ Rotas de autenticação de usuário
 ##### /auth/sign-up
 
 Envie um JSON como este para autenticação:
+```json
 {
     "nome": "string",
     "email": "string",
@@ -35,15 +36,16 @@ Envie um JSON como este para autenticação:
     }
                 ]   
 }
-
+```
 ##### /auth/sign-in
 
 Envie um JSON como este para logar:
+```json
 {
     "email": "string",
     "senha": "******"
 }
-
+```
 ##### /usuario
 
 Enviar o token do user.
