@@ -4,5 +4,6 @@ mongoose.connect('mongodb+srv://accenture:j68ONPTUxMbxggaK@cluster0-i1sny.mongod
     useNewUrlParser : true,
     useUnifiedTopology : true
 })
+mongoose.set('useCreateIndex', true);
 
 module.exports = mongoose;

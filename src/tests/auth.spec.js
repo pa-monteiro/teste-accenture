@@ -1,25 +1,19 @@
 const should = require('should');
 const request = require('request');
+const authController = require('../controllers/authController');
+const userController = require('../controllers/userController');
 const chai = require('chai');
 const expect = chai.expect;
 const urlBase = 'http://localhost:3000';
 
-describe('Sign up | Autenticação', function(){
-    it('Deve verificar se existe user', function(done){
-        request.get({
-            url: urlBase + '/auth/usuario'
-        },
-        function(err, req, res){
-            const _body = {};
-            try {
-                _body = JSON.parse(req);
-            }
-            catch(e){
-                _body = {};
-            }
+describe('GET user', async () => {
+    it('Deve verificar se existe user', () => {
+        const id = '5dee33c6976bb64510570c4c';
+        
+        const result = userController.show(id);
 
-            expect(response.statusCode).to.equal(200);
-        }
-    )
+        return result.then((user) => {
+            assert.equal(user.name, 'string');
+        });
     });
 });

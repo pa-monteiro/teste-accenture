@@ -15,7 +15,7 @@ async signUp(req, res) {
     const { email } = req.body;
     try {
         if(await User.findOne({ email }))
-        return res.status(400).send({ error: 'E-mail já existente' });
+        return res.status(400).send({ mensagem: 'E-mail já existente' });
         
         const user = await User.create(req.body);
         user.ultimo_login = Date.now();
@@ -27,7 +27,7 @@ async signUp(req, res) {
             token: gerarToken({ id: user._id })
         });
     } catch(err) {
-        return res.status(400).send({ error: 'Registration failed'});
+        return res.status(400).send({ mensagem: 'Registration failed'});
     }
 },
 
@@ -37,12 +37,13 @@ async signUp(req, res) {
     const user = await User.findOne({ email }).select('+senha');
 
     if(!user)
-        return res.status(401).send({ error: 'Usuário e/ou senha inválidos' })
+        return res.status(401).send({ mensagem: 'Usuário e/ou senha inválidos' })
 
     if(!await bcrypt.compare(senha, user.senha))
-        return res.status(401).send({ error: 'Usuário e/ou senha inválidos' });
+        return res.status(401).send({ mensagem: 'Usuário e/ou senha inválidos' });
 
     user.senha = undefined;
+    user.__v = undefined;
     user.ultimo_login = Date.now();
         res.send({
             user,
