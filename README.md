@@ -17,6 +17,10 @@ npm install
 node src/index
 ```
 
+OU
+
+https://warm-basin-62634.herokuapp.com/
+
 ### Rotas
 
 Rotas de autenticação de usuário
